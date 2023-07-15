@@ -32,7 +32,10 @@ export const XYFinance = {
     };
 
     transactions.forEach((transaction: Transaction) => {
-      if (xyfinanceAddresses.includes(transaction.to.toLowerCase())) {
+      if (
+        xyfinanceAddresses.includes(transaction.to.toLowerCase()) ||
+        xyfinanceAddresses.includes(transaction.from.toLowerCase())
+      ) {
         if (protocolState.lastActivity === '') protocolState.lastActivity = transaction.receivedAt;
         if (new Date(protocolState.lastActivity) < new Date(transaction.receivedAt))
           protocolState.lastActivity = transaction.receivedAt;

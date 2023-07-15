@@ -21,6 +21,7 @@ export const Holdstation = {
       activeDays: 0,
       approves: 0,
       url: 'https://holdstation.exchange/',
+      tag: 'Gasless',
     };
 
     transactions.forEach((transaction: Transaction) => {
