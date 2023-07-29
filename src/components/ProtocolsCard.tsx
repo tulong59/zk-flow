@@ -22,6 +22,7 @@ import { ZkSwap } from '../protocols/zkswap.ts';
 import { XYFinance } from '../protocols/xyfinance.ts';
 import { Ezkalibur } from '../protocols/ezkalibur.ts';
 import { Bigint as BigIntProtocol } from '../protocols/bigint.ts';
+import { PancakeSwap } from '../protocols/pancakeswap.ts';
 
 interface ProtocolsCardProps {
   address: string;
@@ -63,6 +64,7 @@ const ProtocolsCard: FC<ProtocolsCardProps> = ({ address, transactions }) => {
     XYFinance,
     Ezkalibur,
     BigIntProtocol,
+    PancakeSwap,
   ];
 
   const getProtocolsState = () => {
