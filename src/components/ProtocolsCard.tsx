@@ -20,6 +20,9 @@ import { Rollup } from '../protocols/rollup.ts';
 import { ZkSyncId } from '../protocols/zksyncid.ts';
 import { ZkSwap } from '../protocols/zkswap.ts';
 import { XYFinance } from '../protocols/xyfinance.ts';
+import { Ezkalibur } from '../protocols/ezkalibur.ts';
+import { Bigint as BigIntProtocol } from '../protocols/bigint.ts';
+import { PancakeSwap } from '../protocols/pancakeswap.ts';
 
 interface ProtocolsCardProps {
   address: string;
@@ -41,27 +44,37 @@ export interface ProtocolState {
 const ProtocolsCard: FC<ProtocolsCardProps> = ({ address, transactions }) => {
   const [protocolsState, setProtocolsState] = useState<ProtocolState[]>([]);
   const protocolsContext = useContext(GlobalContext);
+  const protocols = [
+    Holdstation,
+    IzumiFinance,
+    Maverick,
+    Mute,
+    OnchainTrade,
+    Orbiter,
+    SpaceFi,
+    Starmaker,
+    SyncSwap,
+    Velocore,
+    ZkSyncEraPortal,
+    ZkSyncNameService,
+    Goal3,
+    Rollup,
+    ZkSyncId,
+    ZkSwap,
+    XYFinance,
+    Ezkalibur,
+    BigIntProtocol,
+    PancakeSwap,
+  ];
 
   const getProtocolsState = () => {
     setProtocolsState([]);
-    setProtocolsState((prevState) => [...prevState, Holdstation.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, IzumiFinance.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, Maverick.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, Mute.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, OnchainTrade.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, Orbiter.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, SpaceFi.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, Starmaker.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, SyncSwap.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, Velocore.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, ZkSyncEraPortal.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, ZkSyncNameService.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, Goal3.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, Rollup.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, ZkSyncId.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, ZkSwap.getProtocolsState(transactions, address)]);
-    setProtocolsState((prevState) => [...prevState, XYFinance.getProtocolsState(transactions, address)]);
 
+    setProtocolsState(
+      protocols.map((protocol: any) => {
+        return protocol.getProtocolsState(transactions, address);
+      }),
+    );
     setProtocolsState((prevState) => prevState.sort((a, b) => b.volume - a.volume));
   };
 
